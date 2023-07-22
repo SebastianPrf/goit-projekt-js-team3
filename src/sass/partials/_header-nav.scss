@@ -1,0 +1,50 @@
+//     </div>
+//     <nav>
+//       <ul class="nav">
+//         <li class="nav__item">
+//           <a href="#" class="nav__link">Home</a>
+//         </li>
+//         <li class="nav__item">
+//           <a href="./library.html" class="nav__link">My library</a>
+//         </li>
+//       </ul>
+//     </nav>
+//   </div>
+
+.nav {
+  display: flex;
+  align-items: baseline;
+  gap: 40px;
+  list-style-type: none;
+
+  &__item {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  &__item--show {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 3px;
+      background-color: $redColor;
+      bottom: -3px;
+    }
+
+ 
+  }
+
+   &__link {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $whiteColor;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+}
