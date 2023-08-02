@@ -7,6 +7,8 @@ let movieTitle = null;
 
 const searchBtn = document.querySelector('.search-form__button');
 const input = document.querySelector('.search-form__input');
+const errorMsg = document.querySelector('.error-message');
+const galleryOfMovies = document.querySelector('.movie-gallery');
 
 ///////////////////////////////
 // ŁADOWANIE POPULARNYCH FILMÓW
@@ -24,12 +26,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 ///////////////////////////////
 async function searchMovies(e) {
   e.preventDefault();
-  movieTitle = input.value.trim();
-  const data = await fetchMoviesByTitle(1, movieTitle);
-  renderMoviesCards(data.results);
-  totalPages = data.total_pages;
-  normalizeBeforeAfterPages(true);
-  updatePagination();
+  if (input.value === '' && galleryOfMovies.innerHTML !== '') {
+    errorMsg.style.display = 'flex';
+    errorMsg.textContent = 'What are we looking for?';
+    return;
+  } else {
+    errorMsg.style.display = 'none';
+    movieTitle = input.value.trim();
+    const data = await fetchMoviesByTitle(1, movieTitle);
+    renderMoviesCards(data.results);
+    totalPages = data.total_pages;
+    normalizeBeforeAfterPages(true);
+    updatePagination();
+  }
 }
 
 searchBtn.addEventListener('click', searchMovies);
